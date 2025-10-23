@@ -1,26 +1,115 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =====================
+   LIGHT THEME
+   ===================== */
+:root[data-theme="light"] {
+  /* 주요소 */
+  --primary: #ffffff;
+  --secondary: #f6f8fa;
+  --inverse: #1f2328;
+  --link: #0969da;
+  --border: #d0d7de;
+
+  /* 부요소 - container */
+  --primary-container: #f6f8fa;
+  --secondary-container: #eaeef2;
+  --inverse-container: #2b3137;
+
+  /* 부요소 - on (텍스트색) */
+  --on-primary: #1f2328;
+  --on-secondary: #24292f;
+  --on-inverse: #ffffff;
+  --on-primary-container: #1f2328;
+  --on-secondary-container: #1f2328;
+  --on-inverse-container: #ffffff;
+
+  /* 부요소 - accent (강조상태) */
+  --accent-primary: #eaeef2;
+  --accent-secondary: #d8dee4;
+  --accent-inverse: #2f353c;
+  --accent-border: #0969da;
+
+  /* 부요소 - on + accent 조합 */
+  --on-accent-primary: #1f2328;
+  --on-accent-secondary: #1f2328;
+  --on-accent-inverse: #ffffff;
+  --on-accent-border: #ffffff;
+
+  /* 테마 색상 */
+  --theme: #bfffd1;
+  --accent-theme: #5fed83;
+}
+
+/* =====================
+     DARK THEME
+     ===================== */
+:root[data-theme="dark"] {
+  /* 주요소 */
+  --primary: #000000;
+  --secondary: #161b22;
+  --inverse: #ffffff;
+  --link: #58a6ff;
+  --border: #30363d;
+
+  /* 부요소 - container */
+  --primary-container: #161b22;
+  --secondary-container: #21262d;
+  --inverse-container: #f6f8fa;
+
+  /* 부요소 - on (텍스트색) */
+  --on-primary: #f6f8fa;
+  --on-secondary: #e6edf3;
+  --on-inverse: #0d1117;
+  --on-primary-container: #f6f8fa;
+  --on-secondary-container: #f6f8fa;
+  --on-inverse-container: #0d1117;
+
+  /* 부요소 - accent (강조상태) */
+  --accent-primary: #1f6feb;
+  --accent-secondary: #2f81f7;
+  --accent-inverse: #e6edf3;
+  --accent-border: #58a6ff;
+
+  /* 부요소 - on + accent 조합 */
+  --on-accent-primary: #ffffff;
+  --on-accent-secondary: #ffffff;
+  --on-accent-inverse: #0d1117;
+  --on-accent-border: #0d1117;
+
+  /* 테마 색상 */
+  --theme: #08872b;
+  --accent-theme: #104c35;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-inverse: var(--inverse);
+  --color-link: var(--link);
+  --color-border: var(--border);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  --color-primary-container: var(--primary-container);
+  --color-secondary-container: var(--secondary-container);
+  --color-inverse-container: var(--inverse-container);
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  --color-on-primary: var(--on-primary);
+  --color-on-secondary: var(--on-secondary);
+  --color-on-inverse: var(--on-inverse);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-on-inverse-container: var(--on-inverse-container);
+
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-inverse: var(--accent-inverse);
+  --color-accent-border: var(--accent-border);
+
+  --color-on-accent-primary: var(--on-accent-primary);
+  --color-on-accent-secondary: var(--on-accent-secondary);
+  --color-on-accent-inverse: var(--on-accent-inverse);
+  --color-on-accent-border: var(--on-accent-border);
+
+  --color-theme: var(--theme);
+  --color-accent-theme: var(--accent-theme);
 }
