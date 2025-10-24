@@ -12,13 +12,32 @@ export default function ThemeProvider({
 }: {
   defaultTheme?: Theme;
 }) {
-  const { setTheme } = useThemeStore();
+  const { theme, setTheme } = useThemeStore();
 
   useEffect(() => {
-    const storedTheme =
-      (localStorage.getItem(THEME_STORE_ITEM) as Theme) || defaultTheme;
-    setTheme(storedTheme);
+    const storedData = localStorage.getItem(THEME_STORE_ITEM);
+    if (storedData) {
+      const storedTheme = JSON.parse(storedData).state.theme;
+      setTheme(storedTheme);
+    } else {
+      setTheme(defaultTheme);
+    }
   }, []);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+
+    const isDark =
+      theme === "dark" ||
+      (theme === "system" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+    if (isDark) {
+      root.setAttribute("data-theme", "dark");
+    } else {
+      root.removeAttribute("data-theme");
+    }
+  }, [theme]);
 
   return <></>;
 }
