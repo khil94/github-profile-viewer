@@ -9,7 +9,7 @@ interface props {
 export default function Header({ type = "default", itemList }: props) {
   return (
     <header
-      className="h-20 flex flex-row justify-between p-6 bg-secondary-container text-on-secondary-container content-center"
+      className="h-20 flex flex-row justify-between p-6 bg-primary text-on-primary content-center"
       role="banner"
     >
       <Link href={"/"}>home</Link>
