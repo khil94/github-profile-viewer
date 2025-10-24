@@ -1,9 +1,14 @@
 @import "tailwindcss";
 
+body {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--border);
+}
 /* =====================
    LIGHT THEME
    ===================== */
-:root[data-theme="light"] {
+:root {
   /* 주요소 */
   --primary: #ffffff;
   --secondary: #f6f8fa;
