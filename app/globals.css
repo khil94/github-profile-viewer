@@ -82,7 +82,7 @@
   --accent-theme: #104c35;
 }
 
-@theme inline {
+@theme {
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-inverse: var(--inverse);
