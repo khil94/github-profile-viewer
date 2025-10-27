@@ -5,7 +5,7 @@ import { useState } from "react";
 
 interface props {
   className?: string;
-  onSubmit?: (val: string) => void;
+  onSubmit: (val: string) => void;
 }
 
 export default function SearchInput({ className, onSubmit }: props) {
@@ -22,7 +22,7 @@ export default function SearchInput({ className, onSubmit }: props) {
       />
       {val.length !== 0 && (
         <MoveRight
-          // onClick={()=>onSubmit(val)}
+          onClick={() => onSubmit(val)}
           className="hover:cursor-pointer w-[8%] md:w-[5%] h-full absolute opacity-60 top-1/2 -translate-y-1/2 right-[5%]"
         />
       )}
