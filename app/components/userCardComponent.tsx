@@ -1,19 +1,25 @@
+"use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Bookmark, MapPin, X } from "lucide-react";
+import { useBookmarkStore } from "../store/bookmark/bookmarkStore";
 import { GithubUserItem } from "../types";
 
 interface props {
   profile: GithubUserItem;
   handleRemove?: (val: number) => void;
-  handleBookMark?: (val: number) => void;
 }
-export default function UserCardComponent({
-  profile,
-  handleRemove,
-  handleBookMark,
-}: props) {
+export default function UserCardComponent({ profile, handleRemove }: props) {
+  const { bookmark, isInBookmark, addBookmark, deleteBookmark } =
+    useBookmarkStore();
+  const isIn = isInBookmark(profile.id);
+
+  function handleBookmark() {
+    isIn ? deleteBookmark(profile.id) : addBookmark(profile);
+  }
+
   return (
     <Card className="md:col-span-1 rounded-2xl group bg-primary-container border-border p-6">
       <div className="flex items-start justify-between">
@@ -28,11 +34,16 @@ export default function UserCardComponent({
         </Avatar>
         {
           <Button
-            className="hover:text-accent-primary"
+            className={`hover:${
+              isIn ? "text-on-accent-primary" : "text-accent-primary"
+            }`}
             size={"icon-lg"}
+            onClick={() => {
+              handleBookmark();
+            }}
             variant={"ghost"}
           >
-            <Bookmark />
+            <Bookmark className={`${isIn ? " text-accent-primary" : ""}`} />
           </Button>
         }
         {handleRemove && (
