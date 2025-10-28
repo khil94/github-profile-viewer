@@ -15,7 +15,7 @@ export default function UserCardComponent({
   handleBookMark,
 }: props) {
   return (
-    <Card className="md:col-span-1 group bg-primary-container border-border p-6">
+    <Card className="md:col-span-1 rounded-2xl group bg-primary-container border-border p-6">
       <div className="flex items-start justify-between">
         <Avatar className="w-24 h-24 mb-4">
           <AvatarImage
