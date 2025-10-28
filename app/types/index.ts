@@ -15,6 +15,15 @@ export interface GithubUserItem {
   avatar_url: string; // avatar image url
   node_id: string;
   gravatar_id: string | null;
+  blog?: string;
+  company?: string;
+  location?: string;
+  emaiil?: string;
+  bio?: string;
+  name?: string;
+  followers?: number;
+  folliwing?: number;
+  type: string;
   html_url: string; // profile url
   score: number;
   site_admin: boolean;
