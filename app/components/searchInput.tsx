@@ -23,8 +23,8 @@ export default function SearchInput({ className, ...rest }: props) {
       {val.length !== 0 && (
         <MoveRight
           onClick={() => {
-            redirect(`/users/${val}`);
             setVal("");
+            redirect(`/users/${val}`);
           }}
           className="hover:cursor-pointer w-[8%] md:w-[5%] h-full absolute opacity-60 top-1/2 -translate-y-1/2 right-[5%]"
         />
