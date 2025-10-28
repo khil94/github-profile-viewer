@@ -1,10 +1,10 @@
 "use client";
 
-import { MoveRight } from "lucide-react";
+import { X } from "lucide-react";
 import { redirect } from "next/navigation";
 import { HTMLProps, useState } from "react";
 
-interface props extends HTMLProps<HTMLDivElement> {
+interface props extends HTMLProps<HTMLFormElement> {
   className?: string;
 }
 
@@ -12,7 +12,15 @@ export default function SearchInput({ className, ...rest }: props) {
   const [val, setVal] = useState("");
 
   return (
-    <div {...rest} className={`relative text-black ${className}`}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setVal("");
+        redirect(`/users/${val}`);
+      }}
+      {...rest}
+      className={`relative text-black ${className}`}
+    >
       <input
         className={`w-full pr-[20%] md:pr-[18%] bg-white border-2 border-border rounded-4xl focus:outline-2 outline-accent-border p-[5%]`}
         value={val}
@@ -21,14 +29,13 @@ export default function SearchInput({ className, ...rest }: props) {
         }}
       />
       {val.length !== 0 && (
-        <MoveRight
+        <X
           onClick={() => {
             setVal("");
-            redirect(`/users/${val}`);
           }}
-          className="hover:cursor-pointer w-[8%] md:w-[5%] h-full absolute opacity-60 top-1/2 -translate-y-1/2 right-[5%]"
+          className="hover:cursor-pointer h-1/4 absolute opacity-60 top-1/2 -translate-y-1/2 right-[5%]"
         />
       )}
-    </div>
+    </form>
   );
 }
