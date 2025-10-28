@@ -9,19 +9,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={`antialiased`}>
-        <ThemeProvider />
-        <Header
-          itemList={[
-            { name: "test-home", src: "/" },
-            { name: "test-home", src: "/" },
-            { name: "test-home", src: "/" },
-          ]}
-        />
-        <Contents>{children}</Contents>
-        <Footer />
-      </body>
-    </html>
+    <div>
+      <ThemeProvider />
+      <Header itemList={[{ name: "test-home", src: "/" }]} />
+      <Contents>{children}</Contents>
+      <Footer />
+    </div>
   );
 }
