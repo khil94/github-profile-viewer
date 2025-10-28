@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import ThemeProvider from "./components/themeProvider";
 import "./globals.css";
-import Footer from "./layouts/footer";
-import Header from "./layouts/header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,15 +16,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`antialiased`}>
         <ThemeProvider />
-        <Header
-          itemList={[
-            { name: "test-home", src: "/" },
-            { name: "test-home", src: "/" },
-            { name: "test-home", src: "/" },
-          ]}
-        />
         {children}
-        <Footer />
       </body>
     </html>
   );
