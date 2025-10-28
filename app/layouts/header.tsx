@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SearchInput from "../components/searchInput";
+import ThemeSwitchBtn from "../components/themeSwitchBtn";
 import { HeadItem } from "../types";
 
 interface props {
@@ -24,6 +25,7 @@ export default function Header({ type = "default", itemList }: props) {
               </li>
             );
           })}
+          <ThemeSwitchBtn />
         </ul>
       </nav>
     </header>
