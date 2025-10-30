@@ -1,4 +1,4 @@
-import { GithubUserResponse } from "@/app/types";
+import { GithubUserItem, GithubUserResponse } from "@/app/types";
 
 export async function apiGet<T>(url: string): Promise<T> {
   const API_BASE_URL = process.env.API_BASE_URL;
@@ -13,5 +13,8 @@ export const API = {
     return apiGet<GithubUserResponse>(
       `/api/github/users/search?username=${username}`
     );
+  },
+  async getUserDataById(id: number) {
+    return apiGet<GithubUserItem>(`/api/github/user?id=${id}`);
   },
 };
