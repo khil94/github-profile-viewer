@@ -3,9 +3,19 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Bookmark, MapPin, X } from "lucide-react";
+import {
+  Bookmark,
+  GitBranch,
+  Link,
+  Mail,
+  MapPin,
+  Star,
+  Users,
+  X,
+} from "lucide-react";
 import { useBookmarkStore } from "../store/bookmark/bookmarkStore";
 import { GithubUserItem } from "../types";
+import NumberWithIcon from "./numberWithIconComponent";
 
 interface props {
   profile: GithubUserItem;
@@ -21,21 +31,50 @@ export default function UserCardComponent({ profile, handleRemove }: props) {
   }
 
   return (
-    <Card className="md:col-span-1 rounded-2xl group bg-primary-container border-border p-6">
-      <div className="flex items-start justify-between">
-        <Avatar className="w-24 h-24 mb-4">
-          <AvatarImage
-            src={profile.avatar_url || "/placeholder.svg"}
-            alt={profile.login}
-          />
-          <AvatarFallback className="bg-primary text-on-primary text-3xl">
-            {profile.login.charAt(0)}
-          </AvatarFallback>
-        </Avatar>
-        {
+    <Card className="md:col-span-1 rounded-2xl bg-primary-container border-border p-6">
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-row items-start gap-4">
+          <Avatar className="w-24 h-24 mb-4">
+            <AvatarImage
+              src={profile.avatar_url || "/placeholder.svg"}
+              alt={profile.login}
+            />
+            <AvatarFallback className="bg-primary text-on-primary text-3xl">
+              {profile.login.charAt(0)}
+            </AvatarFallback>
+          </Avatar>
+
+          {/* 세부 정보 섹션 */}
+          <div className="grid grid-cols-2 flex-1">
+            {profile.followers !== undefined && (
+              <NumberWithIcon
+                number={profile.followers}
+                Icon={Users}
+                text="팔로워"
+              />
+            )}
+            {profile.folliwing !== undefined && (
+              <NumberWithIcon
+                number={profile.folliwing}
+                Icon={Users}
+                text="팔로잉"
+              />
+            )}
+            <NumberWithIcon
+              number={profile.public_repos}
+              Icon={GitBranch}
+              text="저장소"
+            />
+
+            <NumberWithIcon
+              number={profile.public_gists}
+              Icon={Star}
+              text="Gists"
+            />
+          </div>
           <Button
-            className={`hover:${
-              isIn ? "text-on-accent-primary" : "text-accent-primary"
+            className={` hover:${
+              isIn ? "text-blue-600" : "text-accent-primary"
             }`}
             size={"icon-lg"}
             onClick={() => {
@@ -43,38 +82,55 @@ export default function UserCardComponent({ profile, handleRemove }: props) {
             }}
             variant={"ghost"}
           >
-            <Bookmark className={`${isIn ? " text-accent-primary" : ""}`} />
+            <Bookmark className={`${isIn ? " text-blue-600" : ""}`} />
           </Button>
-        }
-        {handleRemove && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => handleRemove(profile.id)}
-            className="opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        )}
-      </div>
-      <div className="flex flex-col gap-2">
-        {profile.name && (
-          <h3 className="text-xl font-bold text-on-primary-container">
-            {profile.name}
-          </h3>
-        )}
-        <p className="text-on-muted-primary text-sm">{profile.bio}</p>
-
-        <div className="flex items-center gap-2 ">
-          {profile.login && (
-            <p className=" text-sm text-on-muted-primary">@{profile.login}</p>
+          {handleRemove && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => handleRemove(profile.id)}
+              className="opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+              <X className="w-4 h-4" />
+            </Button>
           )}
-          {profile.location && (
-            <div className="flex items-center gap-1 text-sm text-on-muted-primary">
-              <MapPin className="w-4 h-4" />
-              {profile.location}
-            </div>
-          )}
+        </div>
+        <div className="grid grid-cols-5 w-full gap-8">
+          {/* 이름 등 신상 섹션 */}
+          <div className="col-span-2-2 flex flex-col gap-2">
+            {profile.name && (
+              <h3 className="text-xl font-bold text-on-primary-container">
+                {profile.name}
+              </h3>
+            )}
+            {profile.login && (
+              <p className=" text-sm text-on-muted-primary">@{profile.login}</p>
+            )}
+            <p className="text-on-muted-primary text-sm">{profile.bio}</p>
+          </div>
+          {/* 위치 이메일 등 섹션 */}
+          <div className=" col-span-3 flex flex-col items-start gap-2 ">
+            {profile.location && (
+              <div className="flex items-center gap-1 text-sm text-on-muted-primary">
+                <MapPin className="w-4 h-4" />
+                {profile.location}
+              </div>
+            )}
+            {profile.blog && (
+              <div className="flex items-center gap-1 text-sm text-on-muted-primary">
+                <Link className="w-4 h-4" />
+                <a className="text-link" href={profile.blog}>
+                  {profile.blog}
+                </a>
+              </div>
+            )}
+            {profile.email && (
+              <div className="flex items-center gap-1 text-sm text-on-muted-primary">
+                <Mail className="w-4 h-4" />
+                {profile.email}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </Card>
