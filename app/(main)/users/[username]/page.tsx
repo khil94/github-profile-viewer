@@ -13,7 +13,7 @@ export default async function UsersPage({
 
   return (
     <div>
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
         {userItemList.map((v, i) => {
           return <UserCardComponent key={v.id} profile={v} />;
         })}
