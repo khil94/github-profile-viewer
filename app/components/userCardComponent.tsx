@@ -73,16 +73,18 @@ export default function UserCardComponent({ profile, handleRemove }: props) {
             />
           </div>
           <Button
-            className={` hover:${
-              isIn ? "text-blue-600" : "text-accent-primary"
-            }`}
+            className={`${!isIn && "hover:text-blue-500"}`}
             size={"icon-lg"}
             onClick={() => {
               handleBookmark();
             }}
             variant={"ghost"}
           >
-            <Bookmark className={`${isIn ? " text-blue-600" : ""}`} />
+            <Bookmark
+              className={`${
+                isIn ? "text-blue-500 fill-blue-500" : "hover:text-blue-500"
+              }`}
+            />
           </Button>
           {handleRemove && (
             <Button
