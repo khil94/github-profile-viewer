@@ -18,7 +18,7 @@ export interface GithubUserItem {
   blog?: string;
   company?: string;
   location?: string;
-  emaiil?: string;
+  email?: string;
   bio?: string;
   name?: string;
   followers?: number;
