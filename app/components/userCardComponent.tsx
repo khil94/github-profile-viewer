@@ -20,10 +20,14 @@ import NumberWithIcon from "./numberWithIconComponent";
 interface props {
   profile: GithubUserItem;
   handleRemove?: (val: number) => void;
+  type?: "default" | "full";
 }
-export default function UserCardComponent({ profile, handleRemove }: props) {
-  const { bookmark, isInBookmark, addBookmark, deleteBookmark } =
-    useBookmarkStore();
+export default function UserCardComponent({
+  profile,
+  handleRemove,
+  type = "default",
+}: props) {
+  const { isInBookmark, addBookmark, deleteBookmark } = useBookmarkStore();
   const isIn = isInBookmark(profile.id);
 
   function handleBookmark() {
@@ -31,9 +35,9 @@ export default function UserCardComponent({ profile, handleRemove }: props) {
   }
 
   return (
-    <Card className="md:col-span-1 rounded-2xl bg-primary-container border-border p-6">
+    <Card className="md:col-span-1 rounded-2xl bg-primary-container border-border p-4 md:p-6">
       <div className="flex flex-col gap-8">
-        <div className="flex flex-row items-start gap-4">
+        <div className="flex flex-row items-start">
           <Avatar className="w-24 h-24 mb-4">
             <AvatarImage
               src={profile.avatar_url || "/placeholder.svg"}
@@ -97,7 +101,7 @@ export default function UserCardComponent({ profile, handleRemove }: props) {
             </Button>
           )}
         </div>
-        <div className="grid grid-cols-5 w-full gap-8">
+        <div className="grid grid-cols-5 w-full">
           {/* 이름 등 신상 섹션 */}
           <div className="col-span-2-2 flex flex-col gap-2">
             {profile.name && (
@@ -108,7 +112,9 @@ export default function UserCardComponent({ profile, handleRemove }: props) {
             {profile.login && (
               <p className=" text-sm text-on-muted-primary">@{profile.login}</p>
             )}
-            <p className="text-on-muted-primary text-sm">{profile.bio}</p>
+            {type === "full" && (
+              <p className="text-on-muted-primary text-sm">{profile.bio}</p>
+            )}
           </div>
           {/* 위치 이메일 등 섹션 */}
           <div className=" col-span-3 flex flex-col items-start gap-2 ">
