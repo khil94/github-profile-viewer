@@ -38,4 +38,6 @@ export interface GithubUserItem {
   subscriptions_url: string;
   starred_url: string;
   gists_url: string;
+  public_gists: number;
+  public_repos: number;
 }
