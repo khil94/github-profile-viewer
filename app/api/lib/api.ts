@@ -1,8 +1,20 @@
-import { GithubUserItem, GithubUserResponse } from "@/app/types";
+import {
+  GithubContributionResponse,
+  GithubUserItem,
+  GithubUserResponse,
+} from "@/app/types";
 
 export async function apiGet<T>(url: string): Promise<T> {
   const API_BASE_URL = process.env.API_BASE_URL;
   const res = await fetch(API_BASE_URL + url);
+
+  if (!res.ok) throw new Error(`API ERROR : ${res.status}`);
+  return res.json();
+}
+
+export async function apiPost<T>(url: string): Promise<T> {
+  const API_BASE_URL = process.env.API_BASE_URL;
+  const res = await fetch(API_BASE_URL + url, { method: "POST" });
 
   if (!res.ok) throw new Error(`API ERROR : ${res.status}`);
   return res.json();
@@ -16,5 +28,10 @@ export const API = {
   },
   async getUserDataById(id: number) {
     return apiGet<GithubUserItem>(`/api/github/user?id=${id}`);
+  },
+  async getUserContributionsByLogin(login: string) {
+    return apiPost<GithubContributionResponse>(
+      `/api/github/user?login=${login}`
+    );
   },
 };

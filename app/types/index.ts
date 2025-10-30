@@ -41,3 +41,56 @@ export interface GithubUserItem {
   public_gists: number;
   public_repos: number;
 }
+
+export interface GithubContributionResponse {
+  totalContributions: number;
+  recentContributions: ContributionsCollection;
+  languageDistribution: Record<string, number>;
+  mostActiveDay: string;
+  weekdayRatio: Record<string, number>;
+  mostLanguage: string;
+}
+
+export interface GithubContribution {
+  total: ContributionsCollection;
+  recent: ContributionsCollection;
+  repositories: Repo;
+}
+
+export interface ContributionsCollection {
+  contributionCalendar: ContributionCalendar;
+}
+
+export interface ContributionCalendar {
+  totalContributions: number;
+  weeks?: ContributionDays[];
+}
+
+export interface ContributionDays {
+  contributionDays: ContibutionDay[];
+}
+
+export interface ContibutionDay {
+  date: string;
+  contributionCount: number;
+}
+
+export interface Repo {
+  nodes: RepoNode[];
+}
+
+export interface RepoNode {
+  name: string;
+  languages: RepoEdges;
+}
+export interface RepoEdges {
+  edges: RepoEdge[];
+}
+
+export interface RepoEdge {
+  size: number;
+  node: RepoEdgeNode;
+}
+export interface RepoEdgeNode {
+  name: string;
+}
