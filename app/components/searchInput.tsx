@@ -8,6 +8,7 @@ interface props extends Omit<HTMLProps<HTMLFormElement>, "onSubmit"> {
   onSubmit?: (val: string) => void;
   value: string;
   onChangeValue: (val: string) => void;
+  placeholder?: string;
 }
 
 export default function SearchInput({
@@ -15,6 +16,7 @@ export default function SearchInput({
   onSubmit,
   onChangeValue,
   value,
+  placeholder,
   ...rest
 }: props) {
   return (
@@ -25,11 +27,12 @@ export default function SearchInput({
         onSubmit && onSubmit(value);
       }}
       {...rest}
-      className={`relative text-black ${className}`}
+      className={`relative rounded-2xl ${className}`}
     >
       <input
-        className={`w-full pr-[20%] md:pr-[18%] bg-white border-2 border-border rounded-4xl focus:outline-2 outline-accent-border p-[5%]`}
+        className={`w-full pr-[20%] rounded-2xl text-on-primary-container md:pr-[18%] bg-primary-container border-2 border-border focus:outline-2 outline-accent-border p-[5%]`}
         value={value}
+        placeholder={placeholder}
         onChange={(e) => {
           const temp = e.target.value.trim();
           onChangeValue(temp);
