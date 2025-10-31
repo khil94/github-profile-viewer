@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import SearchInput from "../components/searchInput";
 import ThemeSwitchBtn from "../components/themeSwitchBtn";
 import { HeadItem } from "../types";
@@ -9,6 +12,7 @@ interface props {
 }
 
 export default function Header({ type = "default", itemList }: props) {
+  const [val, setVal] = useState("");
   return (
     <header
       className="h-20 flex flex-row justify-between items-center p-6 bg-primary text-on-primary content-center"
@@ -17,7 +21,11 @@ export default function Header({ type = "default", itemList }: props) {
       <Link href={"/"}>home</Link>
       <nav className="">
         <ul className="flex flex-row items-center gap-8">
-          <SearchInput className={``} />
+          <SearchInput
+            value={val}
+            onChangeValue={(v) => setVal(v)}
+            className={``}
+          />
           {itemList.map((v) => {
             return (
               <li key={`header-link-${v.src}`}>
