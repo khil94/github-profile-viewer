@@ -63,10 +63,14 @@ export async function POST(req: NextRequest) {
           }
         }
         # repo 언어 분포
-        repositories(first: 100, ownerAffiliations: OWNER) {
+        repositories(first: 100, orderBy: { field: UPDATED_AT, direction: DESC } ownerAffiliations: OWNER) {
           nodes {
             name
             url
+            description
+            stargazerCount
+            forkCount
+            updatedAt
             languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
               edges {
                 size
@@ -91,7 +95,7 @@ export async function POST(req: NextRequest) {
 
   const { mostActiveDay, weekdayRatio } = getContributionData(user);
 
-  const { languageDistribution, mostLanguage } = getLanguageMap(
+  const { languageDistribution, favoriteLanguage } = getLanguageMap(
     user.repositories.nodes
   );
 
@@ -101,7 +105,8 @@ export async function POST(req: NextRequest) {
     languageDistribution,
     mostActiveDay,
     weekdayRatio,
-    mostLanguage,
+    favoriteLanguage,
+    repositories: user.repositories,
   };
 
   return NextResponse.json(resp);

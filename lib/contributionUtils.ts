@@ -4,7 +4,7 @@ export function getLanguageMap(data: RepoNode[]) {
   // === 언어 통계 가공 ===
   const total = data.length;
   const tempMap: Record<string, number> = {};
-  let mostLanguage = "";
+  let favoriteLanguage = "";
   let mostLangRatio = 0;
   data.forEach((v) => {
     v.languages.edges.forEach((lang) => {
@@ -18,11 +18,11 @@ export function getLanguageMap(data: RepoNode[]) {
     languageDistribution[lang] = Math.round((count / total) * 100) / 100;
     if (languageDistribution[lang] > mostLangRatio) {
       mostLangRatio = languageDistribution[lang];
-      mostLanguage = lang;
+      favoriteLanguage = lang;
     }
   });
 
-  return { languageDistribution, mostLanguage };
+  return { languageDistribution, favoriteLanguage };
 }
 
 export function getContributionData(data: GithubContribution) {

@@ -48,7 +48,8 @@ export interface GithubContributionResponse {
   languageDistribution: Record<string, number>;
   mostActiveDay: string;
   weekdayRatio: Record<string, number>;
-  mostLanguage: string;
+  favoriteLanguage: string;
+  repositories: Repo;
 }
 
 export interface GithubContribution {
@@ -82,6 +83,10 @@ export interface Repo {
 export interface RepoNode {
   name: string;
   url: string;
+  description: string | null;
+  stargazerCount: number;
+  forkCount: number;
+  updatedAt: string;
   languages: RepoEdges;
 }
 export interface RepoEdges {
