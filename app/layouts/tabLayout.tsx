@@ -27,7 +27,7 @@ export default function TabLayout({ tabList }: props) {
       </TabsList>
       {tabList.map((v, idx) => {
         return (
-          <TabsContent key={v.name + idx} value={v.name}>
+          <TabsContent className="mt-8" key={v.name + idx} value={v.name}>
             {v.content}
           </TabsContent>
         );
