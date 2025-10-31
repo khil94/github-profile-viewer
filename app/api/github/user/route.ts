@@ -66,6 +66,7 @@ export async function POST(req: NextRequest) {
         repositories(first: 100, ownerAffiliations: OWNER) {
           nodes {
             name
+            url
             languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
               edges {
                 size

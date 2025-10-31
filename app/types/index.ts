@@ -81,6 +81,7 @@ export interface Repo {
 
 export interface RepoNode {
   name: string;
+  url: string;
   languages: RepoEdges;
 }
 export interface RepoEdges {
