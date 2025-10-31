@@ -15,10 +15,14 @@ interface props {
 export default function TabLayout({ tabList }: props) {
   return (
     <Tabs defaultValue={tabList[0].name}>
-      <TabsList>
+      <TabsList className="w-full bg-primary-container rounded-2xl">
         {tabList.map((v, idx) => {
           return (
-            <TabsTrigger key={v.name + idx} value={v.name}>
+            <TabsTrigger
+              className="active:bg-accent-primary active:text-on-accent-primary rounded-2xl data-[state=active]:text-on-accent-primary data-[state=active]:bg-accent-primary "
+              key={v.name + idx}
+              value={v.name}
+            >
               <v.icon />
               {v.name}
             </TabsTrigger>
