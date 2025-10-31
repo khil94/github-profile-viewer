@@ -25,6 +25,7 @@ export default function ContributionTab({ weekdayRatio, login }: props) {
 
   return (
     <section className="flex flex-col gap-8">
+      <h1 className="text-2xl font-bold">기여도</h1>
       <div className="rounded-2xl bg-primary-container p-6">
         <h3 className="text-xl font-semibold mb-8">활동</h3>
         <img
