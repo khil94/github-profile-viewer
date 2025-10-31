@@ -13,6 +13,7 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react";
+import ContributionTab from "./components/contributionTab";
 import InfoCard from "./components/infoCard";
 import LagnTab from "./components/langTab";
 import RepoTab from "./components/repoTab";
@@ -51,20 +52,22 @@ export default async function UserDetailPage({
     },
     {
       name: "기여도",
-      content: <div>기여도</div>,
+      content: (
+        <ContributionTab
+          login={userData.login}
+          weekdayRatio={contributionData.weekdayRatio}
+        />
+      ),
       icon: ChartColumn,
     },
   ];
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-8">
       <section>
         <UserCardComponent type="full" profile={userData} />
       </section>
-      <img
-        src={`http://ghchart.rshah.org/${userData.login}`}
-        alt={`${userData.login}'s Github chart`}
-      />
+
       <section className="md:flex flex-row gap-2 grid grid-cols-2">
         <InfoCard
           title="총 기여도"
