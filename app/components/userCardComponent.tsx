@@ -127,9 +127,13 @@ export default function UserCardComponent({
             {profile.blog && (
               <div className="flex items-center gap-1 text-sm text-on-muted-primary">
                 <Link className="w-4 h-4" />
-                <a className="text-link" href={profile.blog}>
-                  {profile.blog}
-                </a>
+                {type === "default" ? (
+                  <p className="">{profile.blog}</p>
+                ) : (
+                  <a className="text-link" href={profile.blog}>
+                    {profile.blog}
+                  </a>
+                )}
               </div>
             )}
             {profile.email && (

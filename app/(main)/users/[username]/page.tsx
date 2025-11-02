@@ -1,5 +1,6 @@
 import UserCardComponent from "@/app/components/userCardComponent";
 import { MOCKUP_USER } from "@/app/constants/mockupData";
+import Link from "next/link";
 
 export default async function UsersPage({
   params,
@@ -15,7 +16,11 @@ export default async function UsersPage({
     <div>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
         {userItemList.map((v, i) => {
-          return <UserCardComponent key={v.id} profile={v} />;
+          return (
+            <Link key={v.id} href={`/user/${v.id}`}>
+              <UserCardComponent profile={v} />
+            </Link>
+          );
         })}
       </div>
     </div>

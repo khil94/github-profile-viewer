@@ -34,7 +34,9 @@ export default function BookmarkPage() {
             {Array.from(bookmark).map((v) => {
               return (
                 <div key={`${v[0]}`}>
-                  <UserCardComponent profile={v[1]} />
+                  <Link href={`/user/${v[1].id}`}>
+                    <UserCardComponent profile={v[1]} />
+                  </Link>
                 </div>
               );
             })}
