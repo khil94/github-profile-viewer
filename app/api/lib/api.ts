@@ -34,4 +34,7 @@ export const API = {
       `/api/github/user?login=${login}`
     );
   },
+  async getUserRecentEvetsByUsername(username: string) {
+    return apiGet(`/api/github/recent-activity?username=${username}`);
+  },
 };

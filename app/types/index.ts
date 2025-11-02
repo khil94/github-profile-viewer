@@ -4,6 +4,7 @@ import {
   PROJECT_BADGE,
   SIGNATURE_BADGE,
 } from "../constants/badgeList";
+import { GITHUB_EVENTS } from "../constants/events";
 
 export interface HeadItem {
   name: string;
@@ -135,3 +136,13 @@ export type BadgeGenerator = Record<
   Badge,
   (v: GithubContributionResponse) => boolean
 >;
+
+export type GithubEvents = (typeof GITHUB_EVENTS)[number];
+
+export interface GithubEventResponse {
+  type: GithubEvents;
+  repo: string;
+  createdAt: string;
+  actor: string;
+  payload: any;
+}
