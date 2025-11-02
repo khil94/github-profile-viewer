@@ -35,7 +35,7 @@ export default function UserCardComponent({
   }
 
   return (
-    <Card className="md:col-span-1 rounded-2xl bg-primary-container border-border p-4 md:p-6">
+    <Card className="h-full md:col-span-1 rounded-2xl bg-primary-container border-border p-4 md:p-6">
       <div className="flex flex-col gap-8">
         <div className="flex flex-row items-start">
           <Avatar className="w-24 h-24 mb-4">
