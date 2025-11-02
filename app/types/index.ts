@@ -1,4 +1,3 @@
-import { LucideIcon } from "lucide-react";
 import {
   ACTIVITY_BADGE,
   LANGUAGE_BADGE,
@@ -126,7 +125,7 @@ export type Badge =
 
 export interface BadgeItem {
   content: string;
-  Icon: LucideIcon;
+  icon: string;
   color: string;
 }
 
