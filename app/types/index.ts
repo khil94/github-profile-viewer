@@ -131,4 +131,7 @@ export interface BadgeItem {
 
 export type BadgeList = Record<Badge, BadgeItem>;
 
-export type BadgeGenerator = Record<Badge, (v: any) => boolean>;
+export type BadgeGenerator = Record<
+  Badge,
+  (v: GithubContributionResponse) => boolean
+>;
