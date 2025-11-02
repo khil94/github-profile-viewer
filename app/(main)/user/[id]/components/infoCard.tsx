@@ -17,8 +17,8 @@ export default function InfoCard({
   iconClass,
 }: props) {
   return (
-    <Card className="w-full grid grid-cols-5 px-4 rounded-2xl bg-primary-container">
-      <div className="flex flex-col gap-1 col-span-4">
+    <Card className="w-full grid grid-cols-4 px-4 rounded-2xl bg-primary-container">
+      <div className="flex flex-col gap-1 col-span-3">
         <h1 className="text-xs text-on-muted-primary">{title}</h1>
         <p className="text-2xl">{content}</p>
         <p className="text-xs text-on-muted-primary">{subscription}</p>
