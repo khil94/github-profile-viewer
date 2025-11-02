@@ -127,6 +127,7 @@ export type Badge =
 export interface BadgeItem {
   content: string;
   Icon: LucideIcon;
+  color: string;
 }
 
 export type BadgeList = Record<Badge, BadgeItem>;
