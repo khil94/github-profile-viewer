@@ -1,6 +1,6 @@
 import { BadgeGenerator, GithubContributionResponse } from "@/app/types";
 
-export const BADGE_GENERATOR_MAP: BadgeGenerator = {
+export const badgeGeneratorRecord: BadgeGenerator = {
   "꾸준한 개발자": (v: GithubContributionResponse) => {
     let activeDay = 0;
     v.recentContributions.contributionCalendar
