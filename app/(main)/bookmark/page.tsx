@@ -33,11 +33,9 @@ export default function BookmarkPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Array.from(bookmark).map((v) => {
               return (
-                <div key={`${v[0]}`}>
-                  <Link href={`/user/${v[1].id}`}>
-                    <UserCardComponent profile={v[1]} />
-                  </Link>
-                </div>
+                <Link href={`/user/${v[1].id}`} key={`${v[0]}`}>
+                  <UserCardComponent profile={v[1]} />
+                </Link>
               );
             })}
           </div>
