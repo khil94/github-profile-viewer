@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import SearchInput from "../components/searchInput";
 import ThemeSwitchBtn from "../components/themeSwitchBtn";
@@ -24,6 +25,7 @@ export default function Header({ type = "default", itemList }: props) {
           <SearchInput
             value={val}
             onChangeValue={(v) => setVal(v)}
+            onSubmit={(v) => redirect(`/users/${v}`)}
             className={``}
           />
           {itemList.map((v) => {
