@@ -13,6 +13,7 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react";
+import BadgeSection from "./components/badgeSection";
 import ContributionTab from "./components/contributionTab";
 import InfoCard from "./components/infoCard";
 import LagnTab from "./components/langTab";
@@ -35,7 +36,7 @@ export default async function UserDetailPage({
   const userDetailTabList: tabItem[] = [
     {
       name: "개요",
-      content: <div>개요</div>,
+      content: <BadgeSection resp={contributionData} />,
       icon: TrendingUp,
     },
     {
@@ -68,7 +69,7 @@ export default async function UserDetailPage({
         <UserCardComponent type="full" profile={userData} />
       </section>
 
-      <section className="md:flex flex-row gap-2 grid grid-cols-2">
+      <section className="lg:flex flex-row gap-2 grid grid-cols-2">
         <InfoCard
           title="총 기여도"
           content={contributionData.totalContributions.toLocaleString()}
