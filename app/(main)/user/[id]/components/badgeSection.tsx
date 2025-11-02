@@ -4,13 +4,13 @@ import { badgeGeneratorRecord } from "@/lib/badgeUtils";
 import BadgeCard from "./badgeCard";
 
 interface props {
-  resp: GithubContributionResponse;
+  data: GithubContributionResponse;
 }
 
-export default function BadgeSection({ resp }: props) {
+export default function BadgeSection({ data }: props) {
   const acquiredBadges = Object.entries(badgeGeneratorRecord)
     .filter(([Key, val]) => {
-      return val(resp);
+      return val(data);
     })
     .map((v) => {
       return {
@@ -21,7 +21,7 @@ export default function BadgeSection({ resp }: props) {
 
   return (
     <section>
-      <h2 className="text-2xl font-bold mb-4">배지</h2>
+      <h2 className="text-2xl font-bold mb-6">배지</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {acquiredBadges.map((t) => {
           return (

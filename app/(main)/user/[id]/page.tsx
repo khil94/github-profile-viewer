@@ -1,6 +1,7 @@
 import UserCardComponent from "@/app/components/userCardComponent";
 import {
   MOCKUP_COMPUTED_CONTRIBUTION_DATA,
+  MOCKUP_EVENTS,
   MOCKUP_USER,
 } from "@/app/constants/mockupData";
 import TabLayout, { tabItem } from "@/app/layouts/tabLayout";
@@ -13,10 +14,10 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react";
-import BadgeSection from "./components/badgeSection";
 import ContributionTab from "./components/contributionTab";
 import InfoCard from "./components/infoCard";
 import LagnTab from "./components/langTab";
+import OverviewSection from "./components/overviewSection";
 import RepoTab from "./components/repoTab";
 
 export default async function UserDetailPage({
@@ -32,11 +33,19 @@ export default async function UserDetailPage({
   // console.log("USER CONTRIBUTION LIST", contributionData);
   const userData = MOCKUP_USER.items[0];
   const contributionData = MOCKUP_COMPUTED_CONTRIBUTION_DATA;
+  // const testData = await API.getUserRecentEvetsByUsername(userData.login);
+  // console.log("testdata : ", testData);
+  const eventData = MOCKUP_EVENTS;
 
   const userDetailTabList: tabItem[] = [
     {
       name: "개요",
-      content: <BadgeSection resp={contributionData} />,
+      content: (
+        <OverviewSection
+          eventData={eventData}
+          contributionData={contributionData}
+        />
+      ),
       icon: TrendingUp,
     },
     {
