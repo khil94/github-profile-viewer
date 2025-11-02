@@ -41,6 +41,9 @@ export async function POST(req: NextRequest) {
   const from = new Date();
   from.setMonth(to.getMonth() - 3);
 
+  const currentYear = new Date().getFullYear();
+  const firstDayFrom = `${currentYear}-01-01T00:00:00Z`;
+  const firstDayTo = `${currentYear}-12-31T23:59:59Z`;
   const query = `
     query($login: String!, $from: DateTime!, $to: DateTime!) {
       user(login: $login) {
@@ -54,6 +57,17 @@ export async function POST(req: NextRequest) {
         recent: contributionsCollection(from: $from, to: $to) {
           contributionCalendar {
             totalContributions
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+              }
+            }
+          }
+        }
+        # 올해 첫 커밋
+        firstCommit: contributionsCollection(from: $firstDayFrom, to: $firstDayTo) {
+          contributionCalendar {
             weeks {
               contributionDays {
                 date
@@ -90,6 +104,8 @@ export async function POST(req: NextRequest) {
       login,
       from: from.toISOString(),
       to: to.toISOString(),
+      firstDayFrom,
+      firstDayTo,
     }
   );
 
@@ -107,6 +123,9 @@ export async function POST(req: NextRequest) {
     weekdayRatio,
     favoriteLanguage,
     repositories: user.repositories,
+    firstCommit:
+      user.firstCommit.contributionCalendar.weeks![0].contributionDays[0]
+        .contributionCount > 0 || false,
   };
 
   return NextResponse.json(resp);

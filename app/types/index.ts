@@ -1,3 +1,11 @@
+import { LucideIcon } from "lucide-react";
+import {
+  ACTIVITY_BADGE,
+  LANGUAGE_BADGE,
+  PROJECT_BADGE,
+  SIGNATURE_BADGE,
+} from "../constants/badgeList";
+
 export interface HeadItem {
   name: string;
   src: string;
@@ -50,14 +58,15 @@ export interface GithubContributionResponse {
   weekdayRatio: Record<string, number>;
   favoriteLanguage: string;
   repositories: Repo;
+  firstCommit: boolean;
 }
 
 export interface GithubContribution {
   total: ContributionsCollection;
   recent: ContributionsCollection;
   repositories: Repo;
+  firstCommit: ContributionsCollection;
 }
-
 export interface ContributionsCollection {
   contributionCalendar: ContributionCalendar;
 }
@@ -100,3 +109,26 @@ export interface RepoEdge {
 export interface RepoEdgeNode {
   name: string;
 }
+
+export type ActivityBadge = (typeof ACTIVITY_BADGE)[number];
+
+export type ProjectBadge = (typeof PROJECT_BADGE)[number];
+
+export type LanguageBadge = (typeof LANGUAGE_BADGE)[number];
+
+export type SignatureBadge = (typeof SIGNATURE_BADGE)[number];
+
+export type Badge =
+  | ActivityBadge
+  | ProjectBadge
+  | LanguageBadge
+  | SignatureBadge;
+
+export interface BadgeItem {
+  content: string;
+  Icon: LucideIcon;
+}
+
+export type BadgeList = Record<Badge, BadgeItem>;
+
+export type BadgeGenerator = Record<Badge, (v: any) => boolean>;
