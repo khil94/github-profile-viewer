@@ -26,7 +26,7 @@ export default function RecentlyViewedSection() {
         </div>
       ) : (
         <NothingCardComponent
-          className="bg-primary border-0"
+          className=""
           TargetIcon={SearchX}
           text="최근 본 사용자가 없습니다."
         />

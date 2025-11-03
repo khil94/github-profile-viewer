@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center ">
-      <section className="min-h-screen w-full text-center content-center space-y-4">
+      <section className="min-h-screen from-20% from-primary-container to-primary bg-linear-to-b w-full text-center content-center space-y-4">
         <h1 className="text-4xl font-bold opacity-90">
           Github 프로필을 분석해보세요
         </h1>
@@ -21,7 +21,7 @@ export default function Home() {
           placeholder="Github 사용자명을 입력하세요"
           onChangeValue={(v) => setVal(v)}
           onSubmit={(v) => redirect(`/users/${v}`)}
-          className="w-4/5 md:w-2/3 m-auto md:text-2xl lg:w-1/2 lg:text-3xl 2xl:text-4xl"
+          className="w-4/5 md:w-2/3 m-auto md:text-2xl lg:w-1/2 lg:text-3xl "
         />
       </section>
       <RecentlyViewedSection />
