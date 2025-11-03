@@ -16,7 +16,7 @@ export default function Header({ type = "default", itemList }: props) {
   const [val, setVal] = useState("");
   return (
     <header
-      className="h-20 flex flex-row justify-between items-center p-6 bg-primary text-on-primary content-center"
+      className="h-20 fixed w-full z-10 bg-transparent backdrop-blur-xl flex flex-row  justify-between items-center p-6 text-on-primary content-center"
       role="banner"
     >
       <Link href={"/"}>home</Link>
