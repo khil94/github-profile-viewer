@@ -1,6 +1,6 @@
+import { API } from "@/app/api/lib/api";
 import NothingCardComponent from "@/app/components/nothingCardComponent";
 import UserCardComponent from "@/app/components/userCardComponent";
-import { MOCKUP_USER } from "@/app/constants/mockupData";
 import { UserX2 } from "lucide-react";
 import Link from "next/link";
 import SearchSection from "./components/searchSection";
@@ -10,15 +10,14 @@ export default async function UsersPage({
 }: {
   params: { username: string };
 }) {
-  // const { username } = await params;
-  // const resp = await API.searchUser(username);
-  // const userItemList = resp.items;
-  const userItemList = MOCKUP_USER.items;
+  const { username } = await params;
+  const resp = await API.searchUser(username);
+  const userItemList = resp.items;
 
   return (
     <div className="flex flex-col gap-6">
       <SearchSection />
-      <h1 className="text-2xl font-bold">사용자 검색 결과</h1>
+      <h1 className="text-2xl font-bold">{`사용자 검색 결과 : ${username}`}</h1>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
         {userItemList.length > 0 ? (
           userItemList.map((v, i) => {

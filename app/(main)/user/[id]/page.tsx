@@ -1,9 +1,5 @@
+import { API } from "@/app/api/lib/api";
 import UserCardComponent from "@/app/components/userCardComponent";
-import {
-  MOCKUP_COMPUTED_CONTRIBUTION_DATA,
-  MOCKUP_EVENTS,
-  MOCKUP_USER,
-} from "@/app/constants/mockupData";
 import TabLayout, { tabItem } from "@/app/layouts/tabLayout";
 import {
   Calendar,
@@ -26,22 +22,19 @@ export default async function UserDetailPage({
 }: {
   params: { id: number };
 }) {
-  // const { id } = await params;
-  // const userData = await API.getUserDataById(id);
-  // const contributionData = await API.getUserContributionsByLogin(
-  //   userData.login
-  // );
-  const userData = MOCKUP_USER.items[0];
-  const contributionData = MOCKUP_COMPUTED_CONTRIBUTION_DATA;
-  // const testData = await API.getUserRecentEvetsByUsername(userData.login);
-  const eventData = MOCKUP_EVENTS;
+  const { id } = await params;
+  const userData = await API.getUserDataById(id);
+  const [contributionData, eventData] = await Promise.all([
+    API.getUserContributionsByLogin(userData.login),
+    API.getUserRecentEvetsByUsername(userData.login),
+  ]);
 
   const userDetailTabList: tabItem[] = [
     {
       name: "개요",
       content: (
         <OverviewSection
-          eventData={eventData}
+          eventData={eventData.recentActivity}
           contributionData={contributionData}
         />
       ),

@@ -30,7 +30,7 @@ export interface GithubUserItem {
   bio?: string;
   name?: string;
   followers?: number;
-  folliwing?: number;
+  following?: number;
   type: string;
   html_url: string; // profile url
   score: number;
@@ -46,8 +46,8 @@ export interface GithubUserItem {
   subscriptions_url: string;
   starred_url: string;
   gists_url: string;
-  public_gists: number;
-  public_repos: number;
+  public_gists?: number;
+  public_repos?: number;
 }
 
 export interface GithubContributionResponse {

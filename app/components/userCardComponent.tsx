@@ -62,24 +62,28 @@ export default function UserCardComponent({
                 text="팔로워"
               />
             )}
-            {profile.folliwing !== undefined && (
+            {profile.following !== undefined && (
               <NumberWithIcon
-                number={profile.folliwing}
+                number={profile.following}
                 Icon={Users}
                 text="팔로잉"
               />
             )}
-            <NumberWithIcon
-              number={profile.public_repos}
-              Icon={GitBranch}
-              text="저장소"
-            />
+            {profile.public_repos !== undefined && (
+              <NumberWithIcon
+                number={profile.public_repos}
+                Icon={GitBranch}
+                text="저장소"
+              />
+            )}
 
-            <NumberWithIcon
-              number={profile.public_gists}
-              Icon={Star}
-              text="Gists"
-            />
+            {profile.public_gists !== undefined && (
+              <NumberWithIcon
+                number={profile.public_gists}
+                Icon={Star}
+                text="Gists"
+              />
+            )}
           </div>
 
           <div className="flex flex-row gap-2 items-center">
@@ -120,13 +124,13 @@ export default function UserCardComponent({
         <div className="grid grid-cols-5 w-full">
           {/* 이름 등 신상 섹션 */}
           <div className="col-span-2-2 flex flex-col gap-2">
-            {profile.name && (
+            {profile.login && (
               <h3 className="text-xl font-bold text-on-primary-container">
-                {profile.name}
+                {profile.login}
               </h3>
             )}
-            {profile.login && (
-              <p className=" text-sm text-on-muted-primary">@{profile.login}</p>
+            {profile.name && (
+              <p className=" text-sm text-on-muted-primary">@{profile.name}</p>
             )}
             {type === "full" && (
               <p className="text-on-muted-primary text-sm">{profile.bio}</p>

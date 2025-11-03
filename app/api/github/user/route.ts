@@ -42,10 +42,10 @@ export async function POST(req: NextRequest) {
   from.setMonth(to.getMonth() - 3);
 
   const currentYear = new Date().getFullYear();
-  const firstDayFrom = `${currentYear}-01-01T00:00:00Z`;
-  const firstDayTo = `${currentYear}-12-31T23:59:59Z`;
+  const firstDayFrom = new Date(`${currentYear}-01-01T00:00:00Z`);
+  const firstDayTo = new Date(`${currentYear}-12-31T23:59:59Z`);
   const query = `
-    query($login: String!, $from: DateTime!, $to: DateTime!) {
+    query($login: String!, $from: DateTime!, $to: DateTime!, $firstDayFrom: DateTime!, $firstDayTo: DateTime!) {
       user(login: $login) {
         # 총 기여도
         total: contributionsCollection {

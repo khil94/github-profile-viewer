@@ -1,5 +1,6 @@
 import {
   GithubContributionResponse,
+  GithubEventResponse,
   GithubUserItem,
   GithubUserResponse,
 } from "@/app/types";
@@ -54,6 +55,9 @@ export const API = {
     );
   },
   async getUserRecentEvetsByUsername(username: string) {
-    return apiGet(`/api/github/recent-activity?username=${username}`, 1800);
+    return apiGet<{ recentActivity: GithubEventResponse[] }>(
+      `/api/github/recent-activity?username=${username}`,
+      1800
+    );
   },
 };
