@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center ">
       <Header />
-      <section className="min-h-screen from-20% from-primary-container to-primary bg-linear-to-b w-full text-center content-center space-y-4">
+      <section className="min-h-[80vh] from-20% from-primary-container to-primary bg-linear-to-b w-full text-center content-center space-y-4">
         <h1 className="text-4xl font-bold opacity-90">
           Github 프로필을 분석해보세요
         </h1>
