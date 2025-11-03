@@ -17,7 +17,6 @@ export const useBookmarkStore = create(
     (set, get) => ({
       bookmark: new Map<number, GithubUserItem>(),
       isInBookmark: (target: number) => {
-        console.log("test", get());
         return get().bookmark?.has(target);
       },
       addBookmark: (target: GithubUserItem) => {
