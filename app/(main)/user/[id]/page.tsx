@@ -31,11 +31,9 @@ export default async function UserDetailPage({
   // const contributionData = await API.getUserContributionsByLogin(
   //   userData.login
   // );
-  // console.log("USER CONTRIBUTION LIST", contributionData);
   const userData = MOCKUP_USER.items[0];
   const contributionData = MOCKUP_COMPUTED_CONTRIBUTION_DATA;
   // const testData = await API.getUserRecentEvetsByUsername(userData.login);
-  // console.log("testdata : ", testData);
   const eventData = MOCKUP_EVENTS;
 
   const userDetailTabList: tabItem[] = [

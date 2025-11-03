@@ -9,10 +9,9 @@ interface props {
 }
 
 export default function RecentlyViewedUserHandler({ target }: props) {
-  const { userIdList, userRecord, addUser } = useRecentlyViewedStore();
+  const { addUser } = useRecentlyViewedStore();
   useEffect(() => {
     addUser(target);
-    console.log("inside handler", target.id, userIdList, userRecord);
   }, [target]);
   return <></>;
 }
