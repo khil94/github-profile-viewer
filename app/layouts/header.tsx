@@ -8,7 +8,7 @@ import ThemeSwitchBtn from "../components/themeSwitchBtn";
 export default function Header() {
   return (
     <header
-      className="h-20 fixed w-full z-10 bg-transparent backdrop-blur-xl flex flex-row  justify-between items-center p-6 text-on-primary content-center"
+      className="px-[10%] h-20 fixed w-full z-10 bg-transparent backdrop-blur-xl flex flex-row  justify-between items-center p-6 text-on-primary content-center"
       role="banner"
     >
       <Link href={"/"} className="flex flex-row gap-4 items-center">
