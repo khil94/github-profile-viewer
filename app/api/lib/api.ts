@@ -3,6 +3,7 @@ import {
   GithubUserItem,
   GithubUserResponse,
 } from "@/app/types";
+import { notFound } from "next/navigation";
 
 export async function apiGet<T>(url: string, cachingTime?: number): Promise<T> {
   const API_BASE_URL = process.env.API_BASE_URL;
@@ -10,7 +11,12 @@ export async function apiGet<T>(url: string, cachingTime?: number): Promise<T> {
     next: { revalidate: cachingTime || 3600 },
   });
 
-  if (!res.ok) throw new Error(`API ERROR : ${res.status}`);
+  if (!res.ok) {
+    if (res.status === 404) {
+      notFound();
+    }
+    throw new Error(`API ERROR : ${res.status}`);
+  }
   return res.json();
 }
 
@@ -24,7 +30,12 @@ export async function apiPost<T>(
     next: { revalidate: cachingTime || 3600 },
   });
 
-  if (!res.ok) throw new Error(`API ERROR : ${res.status}`);
+  if (!res.ok) {
+    if (res.status === 404) {
+      notFound();
+    }
+    throw new Error(`API ERROR : ${res.status}`);
+  }
   return res.json();
 }
 
