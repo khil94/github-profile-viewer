@@ -121,9 +121,9 @@ export default function UserCardComponent({
             )}
           </div>
         </div>
-        <div className="grid grid-cols-5 w-full">
+        <div className="grid grid-cols-3 w-full">
           {/* 이름 등 신상 섹션 */}
-          <div className="col-span-2-2 flex flex-col gap-2">
+          <div className="col-span-1 flex flex-col gap-2">
             {profile.login && (
               <h3 className="text-xl font-bold text-on-primary-container">
                 {profile.login}
@@ -137,7 +137,7 @@ export default function UserCardComponent({
             )}
           </div>
           {/* 위치 이메일 등 섹션 */}
-          <div className=" col-span-3 flex flex-col items-start gap-2 ">
+          <div className=" col-span-2 flex flex-col items-start gap-2 ">
             {profile.location && (
               <div className="flex items-center gap-1 text-sm text-on-muted-primary">
                 <MapPin className="w-4 h-4" />
