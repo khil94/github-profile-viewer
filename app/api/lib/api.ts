@@ -4,17 +4,25 @@ import {
   GithubUserResponse,
 } from "@/app/types";
 
-export async function apiGet<T>(url: string): Promise<T> {
+export async function apiGet<T>(url: string, cachingTime?: number): Promise<T> {
   const API_BASE_URL = process.env.API_BASE_URL;
-  const res = await fetch(API_BASE_URL + url);
+  const res = await fetch(API_BASE_URL + url, {
+    next: { revalidate: cachingTime || 3600 },
+  });
 
   if (!res.ok) throw new Error(`API ERROR : ${res.status}`);
   return res.json();
 }
 
-export async function apiPost<T>(url: string): Promise<T> {
+export async function apiPost<T>(
+  url: string,
+  cachingTime?: number
+): Promise<T> {
   const API_BASE_URL = process.env.API_BASE_URL;
-  const res = await fetch(API_BASE_URL + url, { method: "POST" });
+  const res = await fetch(API_BASE_URL + url, {
+    method: "POST",
+    next: { revalidate: cachingTime || 3600 },
+  });
 
   if (!res.ok) throw new Error(`API ERROR : ${res.status}`);
   return res.json();
@@ -35,6 +43,6 @@ export const API = {
     );
   },
   async getUserRecentEvetsByUsername(username: string) {
-    return apiGet(`/api/github/recent-activity?username=${username}`);
+    return apiGet(`/api/github/recent-activity?username=${username}`, 1800);
   },
 };
