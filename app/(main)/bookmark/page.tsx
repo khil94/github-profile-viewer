@@ -1,5 +1,6 @@
 "use client";
 
+import Mapper from "@/app/components/mapper";
 import NothingCardComponent from "@/app/components/nothingCardComponent";
 import UserCardComponent from "@/app/components/userCardComponent";
 import { useBookmarkStore } from "@/app/store/bookmark/bookmarkStore";
@@ -17,29 +18,32 @@ export default function BookmarkPage() {
         <p className="text-on-muted-primary">{`${bookmark.size}명의 사용자를 북마크했습니다.`}</p>
       </div>
       <div>
-        {bookmark.size === 0 ? (
-          <NothingCardComponent
-            text="북마크한 사용자가 없습니다."
-            TargetIcon={User}
-            content={
-              <Link href={"/"}>
-                <Button className="bg-theme rounded active:bg-accent-primary md:hover:bg-accent-theme">
-                  사용자 검색하기
-                </Button>
+        <Mapper
+          wrapper={(v) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{v}</div>
+          )}
+          targetList={Array.from(bookmark)}
+          mapFunc={(v, i) => {
+            return (
+              <Link href={`/user/${v[1].id}`} key={`${v[0]}`}>
+                <UserCardComponent profile={v[1]} />
               </Link>
-            }
-          />
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {Array.from(bookmark).map((v) => {
-              return (
-                <Link href={`/user/${v[1].id}`} key={`${v[0]}`}>
-                  <UserCardComponent profile={v[1]} />
+            );
+          }}
+          fallback={
+            <NothingCardComponent
+              text="북마크한 사용자가 없습니다."
+              TargetIcon={User}
+              content={
+                <Link href={"/"}>
+                  <Button className="bg-theme rounded active:bg-accent-primary md:hover:bg-accent-theme">
+                    사용자 검색하기
+                  </Button>
                 </Link>
-              );
-            })}
-          </div>
-        )}
+              }
+            />
+          }
+        />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import Mapper from "@/app/components/mapper";
 import { RepoNode } from "@/app/types";
 import { Card } from "@/components/ui/card";
 import { CodeXml, GitBranch, LucideIcon, Star } from "lucide-react";
@@ -28,9 +29,13 @@ export default function RepoCard({ repoData }: props) {
       <p className="text-on-muted-primary text-sm">{repoData.description}</p>
       <div className="flex flex-row items-center  gap-1 text-xs text-on-muted-primary">
         <CodeXml className="w-[5%] h-auto" />
-        {repoData.languages.edges.map((v) => {
-          return <p key={`${repoData.name}-${v.node.name}`}>{v.node.name}</p>;
-        })}
+        <Mapper
+          targetList={repoData.languages.edges}
+          fallback={<></>}
+          mapFunc={(v) => {
+            return <p key={`${repoData.name}-${v.node.name}`}>{v.node.name}</p>;
+          }}
+        />
       </div>
       <div className="flex flex-row gap-2">
         <TextWithIcon

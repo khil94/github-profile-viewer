@@ -1,5 +1,6 @@
 "use client";
 
+import Mapper from "@/app/components/mapper";
 import { dynamicColors } from "@/lib/utils";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
@@ -54,31 +55,35 @@ export default function LagnTab({ languageDistribution }: props) {
       <div className="bg-primary-container rounded-2xl p-8">
         <h3 className="text-xl font-semibold mb-4">언어별 저장소</h3>
         <div className="space-y-4">
-          {data.map((lang, idx) => (
-            <div key={`${lang}-${idx}`}>
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <div
-                    className="w-3 h-3 rounded-full"
-                    style={{ backgroundColor: lang.color }}
-                  />
-                  <span className="text-on-primary-container font-medium">
-                    {lang.name}
-                  </span>
+          <Mapper
+            targetList={data}
+            fallback={<></>}
+            mapFunc={(lang, idx) => (
+              <div key={`${lang}-${idx}`}>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="w-3 h-3 rounded-full"
+                      style={{ backgroundColor: lang.color }}
+                    />
+                    <span className="text-on-primary-container font-medium">
+                      {lang.name}
+                    </span>
+                  </div>
+                  <span className="text-on-muted-primary">{lang.value}%</span>
                 </div>
-                <span className="text-on-muted-primary">{lang.value}%</span>
+                <div className="w-full bg-muted-primary rounded-full h-2">
+                  <div
+                    className="h-2 rounded-full"
+                    style={{
+                      width: `${lang.value}%`,
+                      backgroundColor: lang.color,
+                    }}
+                  />
+                </div>
               </div>
-              <div className="w-full bg-muted-primary rounded-full h-2">
-                <div
-                  className="h-2 rounded-full"
-                  style={{
-                    width: `${lang.value}%`,
-                    backgroundColor: lang.color,
-                  }}
-                />
-              </div>
-            </div>
-          ))}
+            )}
+          />
         </div>
       </div>
     </section>

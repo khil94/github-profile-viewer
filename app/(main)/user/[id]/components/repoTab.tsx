@@ -1,5 +1,6 @@
 "use client";
 
+import Mapper from "@/app/components/mapper";
 import SearchInput from "@/app/components/searchInput";
 import { Repo } from "@/app/types";
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,7 @@ interface props {
   repoList: Repo;
 }
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 12; // grid cols 3 2 1 최소공배수..
 
 export default function RepoTab({ repoList }: props) {
   const [val, setVal] = useState("");
@@ -42,11 +43,16 @@ export default function RepoTab({ repoList }: props) {
           placeholder="저장소 이름"
         />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-        {targetList.map((v) => {
-          return <RepoCard key={v.url} repoData={v} />;
-        })}
-      </div>
+      <Mapper
+        wrapper={(v) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {v}
+          </div>
+        )}
+        targetList={targetList}
+        mapFunc={(v) => <RepoCard key={v.url} repoData={v} />}
+        fallback={<></>}
+      />
       <div className="flex justify-center items-center gap-4">
         <Button
           onClick={() => setIdx((p) => p - 1)}
