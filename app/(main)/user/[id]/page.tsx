@@ -73,45 +73,54 @@ export default async function UserDetailPage({
 
       <section className="lg:flex flex-row gap-2 grid grid-cols-2">
         <InfoCard
-          title="총 기여도"
+          title="최근 1년간 기여"
           content={contributionData.totalContributions.toLocaleString()}
           // subscription="+12% 이번 달"
           Icon={TrendingUp}
           iconClass="text-blue-500"
         />
         <InfoCard
-          title="최근 3개월 평균 기여도"
+          title="최근 3개월 평균 기여"
           content={Math.round(
-            (contributionData.recentContributions.contributionCalendar.weeks!
-              .length *
-              70) /
-              90 /
-              10
+            contributionData.recentContributions.contributionCalendar.weeks!.reduce(
+              (p, c) =>
+                p +
+                c.contributionDays.reduce(
+                  (pp, cc) => pp + cc.contributionCount,
+                  0
+                ),
+              0
+            ) / 90
           ).toLocaleString()}
           subscription="일일 평균"
           Icon={Zap}
           iconClass="text-yellow-500"
         />
-        <InfoCard
-          title="가장 좋아하는 언어"
-          content={contributionData.favoriteLanguage}
-          subscription={`${
-            contributionData.languageDistribution[
-              contributionData.favoriteLanguage
-            ] * 100
-          }%의 레포지토리에서 사용됨`}
-          Icon={Globe}
-          iconClass="text-green-500"
-        />
-        <InfoCard
-          title="가장 활동적인 요일"
-          content={contributionData.mostActiveDay}
-          subscription={`${Math.floor(
-            contributionData.weekdayRatio[contributionData.mostActiveDay] * 100
-          )}%를 차지`}
-          Icon={Calendar}
-          iconClass="text-purple-500"
-        />
+        {contributionData.favoriteLanguage && (
+          <InfoCard
+            title="가장 좋아하는 언어"
+            content={contributionData.favoriteLanguage}
+            subscription={`${
+              contributionData.languageDistribution[
+                contributionData.favoriteLanguage
+              ] * 100
+            }%의 레포지토리에서 사용됨`}
+            Icon={Globe}
+            iconClass="text-green-500"
+          />
+        )}
+        {contributionData.mostActiveDay && (
+          <InfoCard
+            title="가장 활동적인 요일"
+            content={contributionData.mostActiveDay}
+            subscription={`${Math.floor(
+              contributionData.weekdayRatio[contributionData.mostActiveDay] *
+                100
+            )}%를 차지`}
+            Icon={Calendar}
+            iconClass="text-purple-500"
+          />
+        )}
       </section>
       <TabLayout tabList={userDetailTabList} />
     </div>
