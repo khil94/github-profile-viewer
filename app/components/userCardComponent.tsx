@@ -76,30 +76,33 @@ export default function UserCardComponent({
               text="Gists"
             />
           </div>
-          <Button
-            className={`${!isIn && "hover:text-blue-500"}`}
-            size={"icon-lg"}
-            onClick={() => {
-              handleBookmark();
-            }}
-            variant={"ghost"}
-          >
-            <Bookmark
-              className={`${
-                isIn ? "text-blue-500 fill-blue-500" : "hover:text-blue-500"
-              }`}
-            />
-          </Button>
-          {handleRemove && (
+
+          <div className="flex flex-row gap-2 items-center">
             <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => handleRemove(profile.id)}
-              className="opacity-0 group-hover:opacity-100 transition-opacity"
+              className={`${!isIn && "hover:text-blue-500"} m-0`}
+              size={"icon-lg"}
+              onClick={() => {
+                handleBookmark();
+              }}
+              variant={"ghost"}
             >
-              <X className="w-4 h-4" />
+              <Bookmark
+                className={`${
+                  isIn ? "text-blue-500 fill-blue-500" : "hover:text-blue-500"
+                }`}
+              />
             </Button>
-          )}
+            {handleRemove && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => handleRemove(profile.id)}
+                className="hover:opacity-50 transition-opacity"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            )}
+          </div>
         </div>
         <div className="grid grid-cols-5 w-full">
           {/* 이름 등 신상 섹션 */}
