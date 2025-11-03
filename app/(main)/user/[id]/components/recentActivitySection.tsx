@@ -20,7 +20,7 @@ export default function RecentActivitySection({ data }: props) {
             targetList={data}
             fallback={
               <NothingCardComponent
-                className="border-none"
+                className="border-none shadow-none"
                 text="최근 활동이 없습니다."
                 TargetIcon={Search}
               />
