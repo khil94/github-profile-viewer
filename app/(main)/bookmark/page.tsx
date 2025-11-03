@@ -23,7 +23,7 @@ export default function BookmarkPage() {
             TargetIcon={User}
             content={
               <Link href={"/"}>
-                <Button className="bg-theme rounded hover:bg-accent-theme">
+                <Button className="bg-theme rounded active:bg-accent-primary md:hover:bg-accent-theme">
                   사용자 검색하기
                 </Button>
               </Link>

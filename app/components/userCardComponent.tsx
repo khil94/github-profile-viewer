@@ -37,7 +37,8 @@ export default function UserCardComponent({
   return (
     <Card
       className={`h-full md:col-span-1 rounded-2xl bg-primary-container border-border p-4 md:p-6 ${
-        type === "default" && "hover:border-accent-primary"
+        type === "default" &&
+        "active:border-accent-primary md:hover:border-accent-primary"
       }`}
     >
       <div className="flex flex-col gap-8">
@@ -83,7 +84,9 @@ export default function UserCardComponent({
 
           <div className="flex flex-row gap-2 items-center">
             <Button
-              className={`${!isIn && "hover:text-blue-500"} m-0`}
+              className={`${
+                !isIn && "active:text-blue-500 md:hover:text-blue-500"
+              } m-0`}
               size={"icon-lg"}
               onClick={(e) => {
                 e.preventDefault();
@@ -93,7 +96,9 @@ export default function UserCardComponent({
             >
               <Bookmark
                 className={`${
-                  isIn ? "text-blue-500 fill-blue-500" : "hover:text-blue-500"
+                  isIn
+                    ? "text-blue-500 fill-blue-500"
+                    : "md:hover:text-blue-500 active:text-blue-500"
                 }`}
               />
             </Button>
@@ -105,7 +110,7 @@ export default function UserCardComponent({
                   e.preventDefault();
                   handleRemove(profile.id);
                 }}
-                className="hover:opacity-50 transition-opacity"
+                className="md:hover:opacity-50 transition-opacity"
               >
                 <X className="w-4 h-4" />
               </Button>

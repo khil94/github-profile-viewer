@@ -19,7 +19,7 @@ export default function TabLayout({ tabList }: props) {
         {tabList.map((v, idx) => {
           return (
             <TabsTrigger
-              className="active:bg-accent-primary hover:bg-secondary-container active:text-on-accent-primary rounded-2xl data-[state=active]:text-on-accent-primary data-[state=active]:bg-accent-primary "
+              className="active:bg-accent-primary md:hover:bg-secondary-container active:text-on-accent-primary rounded-2xl data-[state=active]:text-on-accent-primary data-[state=active]:bg-accent-primary "
               key={v.name + idx}
               value={v.name}
             >

@@ -22,7 +22,7 @@ export default function ThemeSwitchBtn() {
 
   return (
     <Button
-      className="p-4 rounded-2xl hover:bg-accent-primary"
+      className="p-4 rounded-2xl active:bg-accent-primary md:hover:bg-accent-primary"
       variant={"ghost"}
       onClick={() => btnHandler()}
     >

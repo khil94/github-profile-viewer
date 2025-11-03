@@ -17,7 +17,7 @@ export default function Header() {
       </Link>
       <nav className="">
         <ul className="flex flex-row items-center gap-8">
-          <li className="hover:bg-accent-primary p-2 rounded-2xl hover:text-on-accent-primary">
+          <li className="md:hover:bg-accent-primary active:bg-accent-primary p-2 rounded-2xl active:text-on-accent-primary md:hover:text-on-accent-primary">
             <Link
               href={"/bookmark"}
               className="flex flex-row gap-2 items-center"

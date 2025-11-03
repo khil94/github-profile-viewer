@@ -43,7 +43,7 @@ export default function SearchInput({
           onClick={() => {
             onChangeValue("");
           }}
-          className="hover:cursor-pointer hover:opacity-100 h-1/4 absolute opacity-60 top-1/2 -translate-y-1/2 right-[5%]"
+          className="md:hover:cursor-pointer md:hover:opacity-100 h-1/4 absolute opacity-60 top-1/2 -translate-y-1/2 right-[5%]"
         />
       )}
     </form>
