@@ -85,7 +85,8 @@ export default function UserCardComponent({
             <Button
               className={`${!isIn && "hover:text-blue-500"} m-0`}
               size={"icon-lg"}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 handleBookmark();
               }}
               variant={"ghost"}
@@ -100,7 +101,10 @@ export default function UserCardComponent({
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleRemove(profile.id)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleRemove(profile.id);
+                }}
                 className="hover:opacity-50 transition-opacity"
               >
                 <X className="w-4 h-4" />
@@ -137,7 +141,12 @@ export default function UserCardComponent({
                 {type === "default" ? (
                   <p className="">{profile.blog}</p>
                 ) : (
-                  <a className="text-link" href={profile.blog}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="text-link"
+                    href={profile.blog}
+                  >
                     {profile.blog}
                   </a>
                 )}
