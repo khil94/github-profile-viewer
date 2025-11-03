@@ -18,6 +18,7 @@ import ContributionTab from "./components/contributionTab";
 import InfoCard from "./components/infoCard";
 import LagnTab from "./components/langTab";
 import OverviewSection from "./components/overviewSection";
+import RecentlyViewedUserHandler from "./components/recentlyViewedUserHandler";
 import RepoTab from "./components/repoTab";
 
 export default async function UserDetailPage({
@@ -74,6 +75,7 @@ export default async function UserDetailPage({
 
   return (
     <div className="flex flex-col gap-8">
+      <RecentlyViewedUserHandler target={userData} />
       <section>
         <UserCardComponent type="full" profile={userData} />
       </section>
