@@ -29,6 +29,7 @@ export default function ContributionTab({ weekdayRatio, login }: props) {
       <div className="rounded-2xl bg-primary-container p-6">
         <h3 className="text-xl font-semibold mb-8">활동</h3>
         <img
+          className="w-full"
           src={`http://ghchart.rshah.org/${login}`}
           alt={`${login}'s Github chart`}
         />
