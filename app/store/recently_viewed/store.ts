@@ -21,7 +21,7 @@ export const useRecentlyViewedStore = create(
       addUser: (target: GithubUserItem) => {
         const { userIdList, userRecord } = get();
         if (!userRecord[target.id]) {
-          if (userIdList.length !== MAX_LIST_LENGTH) {
+          if (userIdList.length === MAX_LIST_LENGTH) {
             const tempList = [...userIdList.slice(1), target.id];
             const tempRecord = { ...userRecord, [target.id]: target };
             set({
@@ -29,10 +29,8 @@ export const useRecentlyViewedStore = create(
               userRecord: tempRecord,
             });
           } else {
-            const deleteItem = userIdList[0];
-            const tempList = [...userIdList.slice(1), target.id];
-            const tempRecord = { ...userRecord };
-            delete tempRecord[deleteItem];
+            const tempRecord = { ...userRecord, [target.id]: target };
+            const tempList = [...userIdList, target.id];
             set({
               userIdList: tempList,
               userRecord: tempRecord,
