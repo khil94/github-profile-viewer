@@ -14,7 +14,7 @@ export default function RecentlyViewedSection() {
     <section className="min-h-[calc(100vh/2)] w-full items-center flex flex-col gap-6">
       <h3 className="text-2xl font-bold ">최근 본 사용자</h3>
       <Mapper
-        wrapper={(v) => <div>{v}</div>}
+        wrapper={(v) => <div className="flex flex-col gap-4">{v}</div>}
         targetList={userIdList}
         mapFunc={(v) => {
           return (
