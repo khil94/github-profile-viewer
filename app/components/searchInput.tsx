@@ -30,7 +30,7 @@ export default function SearchInput({
       className={`relative rounded-2xl ${className}`}
     >
       <input
-        className={`w-full pr-[20%] rounded-2xl text-on-primary-container md:pr-[18%] bg-primary-container border-2 border-border focus:outline-2 outline-accent-border p-[5%]`}
+        className={`w-full pr-[20%] rounded-2xl text-on-primary-container md:pr-[18%] bg-primary-container border-2 border-border focus:outline-2 outline-accent-border p-[3%]`}
         value={value}
         placeholder={placeholder}
         onChange={(e) => {
@@ -43,7 +43,7 @@ export default function SearchInput({
           onClick={() => {
             onChangeValue("");
           }}
-          className="hover:cursor-pointer h-1/4 absolute opacity-60 top-1/2 -translate-y-1/2 right-[5%]"
+          className="hover:cursor-pointer hover:opacity-100 h-1/4 absolute opacity-60 top-1/2 -translate-y-1/2 right-[5%]"
         />
       )}
     </form>
