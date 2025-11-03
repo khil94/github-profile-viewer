@@ -3,6 +3,7 @@ import UserCardComponent from "@/app/components/userCardComponent";
 import { MOCKUP_USER } from "@/app/constants/mockupData";
 import { UserX2 } from "lucide-react";
 import Link from "next/link";
+import SearchSection from "./components/searchSection";
 
 export default async function UsersPage({
   params,
@@ -15,7 +16,9 @@ export default async function UsersPage({
   const userItemList = MOCKUP_USER.items;
 
   return (
-    <div>
+    <div className="flex flex-col gap-6">
+      <SearchSection />
+      <h1 className="text-2xl font-bold">사용자 검색 결과</h1>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
         {userItemList.length > 0 ? (
           userItemList.map((v, i) => {
