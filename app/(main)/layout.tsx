@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <div>
       <ThemeProvider />
-      <Header itemList={[{ name: "test-home", src: "/" }]} />
+      <Header itemList={[{ name: "bookmark", src: "/bookmark" }]} />
       <Contents>{children}</Contents>
       <Footer />
     </div>
