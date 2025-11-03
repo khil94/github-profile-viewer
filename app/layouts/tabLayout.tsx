@@ -24,7 +24,7 @@ export default function TabLayout({ tabList }: props) {
               value={v.name}
             >
               <v.icon />
-              {v.name}
+              <p className="hidden md:block">{v.name}</p>
             </TabsTrigger>
           );
         })}
