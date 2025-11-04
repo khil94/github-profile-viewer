@@ -9,7 +9,7 @@ export default function Home() {
   const [val, setVal] = useState("");
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center ">
+    <div className="min-h-screen w-full flex flex-col items-center pb-20">
       <Header />
       <section className="min-h-[80vh] from-20% from-primary-container to-primary bg-linear-to-b w-full text-center content-center space-y-4">
         <h1 className="text-4xl font-bold opacity-90">
