@@ -7,7 +7,7 @@ import {
 import { notFound } from "next/navigation";
 
 export async function apiGet<T>(url: string, cachingTime?: number): Promise<T> {
-  const API_BASE_URL = process.env.API_BASE_URL;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const res = await fetch(API_BASE_URL + url, {
     next: { revalidate: cachingTime || 3600 },
   });
@@ -25,7 +25,7 @@ export async function apiPost<T>(
   url: string,
   cachingTime?: number
 ): Promise<T> {
-  const API_BASE_URL = process.env.API_BASE_URL;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const res = await fetch(API_BASE_URL + url, {
     method: "POST",
     next: { revalidate: cachingTime || 3600 },
