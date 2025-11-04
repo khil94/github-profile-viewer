@@ -1,9 +1,12 @@
-import SearchSection from "./components/searchSection";
+import SearchSection from "./components/searchComponent";
 
 export default function CompatibilityPage() {
   return (
     <div>
-      <SearchSection />
+      <section>
+        <SearchSection />
+        <SearchSection />
+      </section>
     </div>
   );
 }

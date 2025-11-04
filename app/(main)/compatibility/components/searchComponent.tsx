@@ -2,23 +2,27 @@
 import { API } from "@/app/api/lib/api";
 import Mapper from "@/app/components/mapper";
 import SearchInput from "@/app/components/searchInput";
+import { useBookmarkStore } from "@/app/store/bookmark/bookmarkStore";
 import { GithubUserItem } from "@/app/types";
-import { X } from "lucide-react";
+import { Bookmark, X } from "lucide-react";
 import { useEffect, useState, useTransition } from "react";
 import SimpleUserCard from "./simpleUserCard";
 
-export default function SearchSection() {
+export default function SearchComponent() {
   const [userList, setUserList] = useState<GithubUserItem[]>([]);
   const [val, setVal] = useState("");
   const [debouncedVal, setDebouncedVal] = useState("");
   const [isPending, startTransition] = useTransition();
   const [currentUser, setCurrentUser] = useState<GithubUserItem>();
+  const [openDropdown, setOpenDropdown] = useState(false);
+
+  const { bookmark } = useBookmarkStore();
+
+  console.log("bookmark", bookmark, bookmark.size);
 
   const handleSearchUser = (v: string) => {
     startTransition(async () => {
-      console.log("inside transition...");
       const resp = await API.searchUser(v);
-      console.log("resp is here : ", resp.items);
       setUserList(resp.items);
     });
   };
@@ -46,13 +50,49 @@ export default function SearchSection() {
   }, [currentUser]);
 
   return (
-    <section>
+    <div>
       <div className="flex flex-col gap-6">
         <SearchInput
           className=""
+          placeholder="Github 사용자명 입력..."
           value={val}
           onChangeValue={(v) => setVal(v)}
         />
+
+        {/* 북마크된 개발자 드롭다운 */}
+        {bookmark.size > 0 && (
+          <div className="relative">
+            <button
+              onClick={() => setOpenDropdown(!openDropdown)}
+              className="w-full rounded-2xl flex items-center justify-between px-3 py-2 bg-muted border border-border text-sm text-muted-foreground hover:bg-muted/80 transition-colors"
+            >
+              <span className="flex items-center gap-2">
+                <Bookmark className="w-4 h-4" />
+                북마크된 개발자 ({bookmark.size})
+              </span>
+            </button>
+            {openDropdown && (
+              <Mapper
+                targetList={Array.from(bookmark.values())}
+                fallback={<></>}
+                wrapper={(v) => (
+                  <div className="absolute bg-primary-container top-full mt-1 left-0 right-0 border border-border shadow-lg z-10 max-h-64 overflow-y-auto">
+                    {v}
+                  </div>
+                )}
+                mapFunc={(v) => (
+                  <button
+                    onClick={() => setCurrentUser(v)}
+                    className="w-full hover:cursor-pointer rounded-2xl hover:bg-accent-primary hover:text-on-accent-primary"
+                  >
+                    <SimpleUserCard key={`${val}-${v.id}`} target={v} />
+                  </button>
+                )}
+              />
+            )}
+          </div>
+        )}
+
         {currentUser && (
           <div className="rounded-2xl relative border-accent-border border-2">
             <SimpleUserCard target={currentUser} />
@@ -72,19 +112,19 @@ export default function SearchSection() {
             targetList={userList}
             mapFunc={(v, i) => {
               return (
-                <div
+                <button
                   onClick={() => setCurrentUser(v)}
                   key={`${val}-${v.id}`}
-                  className="hover:cursor-pointer rounded-2xl hover:bg-accent-primary hover:text-on-accent-primary"
+                  className="w-full hover:cursor-pointer rounded-2xl hover:bg-accent-primary hover:text-on-accent-primary"
                 >
                   <SimpleUserCard key={`${val}-${v.id}`} target={v} />
-                </div>
+                </button>
               );
             }}
             fallback={<>there is no list</>}
           />
         )}
       </div>
-    </section>
+    </div>
   );
 }
