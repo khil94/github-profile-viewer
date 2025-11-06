@@ -23,14 +23,13 @@ export default function SearchInput({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onChangeValue("");
         onSubmit && onSubmit(value);
       }}
       {...rest}
       className={`relative rounded-2xl ${className}`}
     >
       <input
-        className={`w-full pr-[20%] rounded-2xl text-on-primary-container md:pr-[18%] bg-primary-container border-2 border-border focus:outline-2 outline-accent-border p-[3%]`}
+        className={`w-full p-2 md:p-4 pr-[20%] rounded-2xl text-on-primary-container md:pr-[18%] bg-primary-container border-2 border-border focus:outline-2 outline-accent-border `}
         value={value}
         placeholder={placeholder}
         onChange={(e) => {
