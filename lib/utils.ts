@@ -1,3 +1,4 @@
+import { ContributionCalendar } from "@/app/types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -32,4 +33,36 @@ export function getTimeAgo(target: string | Date) {
   if (hour >= 1) return `${hour}시간 전`;
   if (min >= 1) return `${min}분 전`;
   return "최근";
+}
+
+export function getAverageContribution(data: ContributionCalendar) {
+  return Math.round(
+    data.weeks!.reduce(
+      (p, c) =>
+        p + c.contributionDays.reduce((pp, cc) => pp + cc.contributionCount, 0),
+      0
+    ) / 90
+  ).toLocaleString();
+}
+
+export function getAverageStreak(data: ContributionCalendar) {
+  let currentStreak = 0;
+  const streakList: number[] = [];
+  data.weeks!.forEach((v) => {
+    v.contributionDays.forEach((t) => {
+      if (t.contributionCount === 0) {
+        if (currentStreak !== 0) {
+          streakList.push(currentStreak);
+        }
+        currentStreak = 0;
+      } else {
+        currentStreak++;
+      }
+    });
+  });
+  return streakList.length > 0
+    ? Math.round(
+        streakList.reduce((pre, cur) => pre + cur, 0) / streakList.length
+      )
+    : 0;
 }
