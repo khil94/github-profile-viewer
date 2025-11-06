@@ -4,21 +4,25 @@ import Mapper from "@/app/components/mapper";
 import SearchInput from "@/app/components/searchInput";
 import { useBookmarkStore } from "@/app/store/bookmark/bookmarkStore";
 import { GithubUserItem } from "@/app/types";
-import { Bookmark, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Bookmark, LoaderIcon, X } from "lucide-react";
 import { useEffect, useState, useTransition } from "react";
 import SimpleUserCard from "./simpleUserCard";
 
-export default function SearchComponent() {
+interface props {
+  onChangeUser: (v: GithubUserItem | undefined) => void;
+}
+
+export default function SearchComponent({ onChangeUser }: props) {
   const [userList, setUserList] = useState<GithubUserItem[]>([]);
   const [val, setVal] = useState("");
   const [debouncedVal, setDebouncedVal] = useState("");
-  const [isPending, startTransition] = useTransition();
   const [currentUser, setCurrentUser] = useState<GithubUserItem>();
   const [openDropdown, setOpenDropdown] = useState(false);
 
-  const { bookmark } = useBookmarkStore();
+  const [isPending, startTransition] = useTransition();
 
-  console.log("bookmark", bookmark, bookmark.size);
+  const { bookmark } = useBookmarkStore();
 
   const handleSearchUser = (v: string) => {
     startTransition(async () => {
@@ -47,6 +51,7 @@ export default function SearchComponent() {
 
   useEffect(() => {
     setUserList([]);
+    onChangeUser(currentUser);
   }, [currentUser]);
 
   return (
@@ -82,7 +87,10 @@ export default function SearchComponent() {
                 )}
                 mapFunc={(v) => (
                   <button
-                    onClick={() => setCurrentUser(v)}
+                    onClick={() => {
+                      setCurrentUser(v);
+                      setOpenDropdown(false);
+                    }}
                     className="w-full hover:cursor-pointer rounded-2xl hover:bg-accent-primary hover:text-on-accent-primary"
                   >
                     <SimpleUserCard key={`${val}-${v.id}`} target={v} />
@@ -96,11 +104,19 @@ export default function SearchComponent() {
         {currentUser && (
           <div className="rounded-2xl relative border-accent-border border-2">
             <SimpleUserCard target={currentUser} />
-            <X className="absolute hover:opacity-100 opacity-50 w-4 h-auto right-[5%] top-1/2 -translate-y-1/2" />
+            <Button
+              onClick={() => setCurrentUser(undefined)}
+              className="bg-transparent absolute hover:opacity-100 opacity-50 w-4 h-auto right-[5%] top-1/2 -translate-y-1/2"
+            >
+              <X />
+            </Button>
           </div>
         )}
+
         {isPending ? (
-          <>loading...</>
+          <div className="rounded-2xl bg-primary-container p-4">
+            <LoaderIcon className="animate-spin" />
+          </div>
         ) : (
           <Mapper
             wrapper={(v) => (
@@ -121,7 +137,7 @@ export default function SearchComponent() {
                 </button>
               );
             }}
-            fallback={<>there is no list</>}
+            fallback={<></>}
           />
         )}
       </div>
