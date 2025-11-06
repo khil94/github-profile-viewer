@@ -55,7 +55,7 @@ export const API = {
     );
   },
   async getUserRecentEvetsByUsername(username: string) {
-    return apiGet<{ recentActivity: GithubEventResponse[] }>(
+    return apiGet<GithubEventResponse>(
       `/api/github/recent-activity?username=${username}`,
       1800
     );
