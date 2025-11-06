@@ -1,5 +1,3 @@
-"use client";
-
 import Mapper from "@/app/components/mapper";
 import UserAvatar from "@/app/components/userAvatar";
 import {

@@ -1,5 +1,3 @@
-"use client";
-
 import { Bookmark, Heart } from "lucide-react";
 import Link from "next/link";
 import GithubIcon from "../assets/github.svg";
