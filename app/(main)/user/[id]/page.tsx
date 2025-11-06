@@ -1,6 +1,7 @@
 import { API } from "@/app/api/lib/api";
 import UserCardComponent from "@/app/components/userCardComponent";
 import TabLayout, { tabItem } from "@/app/layouts/tabLayout";
+import { getAverageContribution } from "@/lib/utils";
 import {
   Calendar,
   ChartColumn,
@@ -81,17 +82,9 @@ export default async function UserDetailPage({
         />
         <InfoCard
           title="최근 3개월 평균 기여"
-          content={Math.round(
-            contributionData.recentContributions.contributionCalendar.weeks!.reduce(
-              (p, c) =>
-                p +
-                c.contributionDays.reduce(
-                  (pp, cc) => pp + cc.contributionCount,
-                  0
-                ),
-              0
-            ) / 90
-          ).toLocaleString()}
+          content={getAverageContribution(
+            contributionData.recentContributions.contributionCalendar
+          )}
           subscription="일일 평균"
           Icon={Zap}
           iconClass="text-yellow-500"
