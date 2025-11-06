@@ -1,6 +1,6 @@
 "use client";
 
-import { Bookmark } from "lucide-react";
+import { Bookmark, Heart } from "lucide-react";
 import Link from "next/link";
 import GithubIcon from "../assets/github.svg";
 import ThemeSwitchBtn from "../components/themeSwitchBtn";
@@ -17,6 +17,15 @@ export default function Header() {
       </Link>
       <nav className="">
         <ul className="flex flex-row items-center gap-8">
+          <li className="md:hover:bg-accent-primary active:bg-accent-primary p-2 rounded-2xl active:text-on-accent-primary md:hover:text-on-accent-primary">
+            <Link
+              href={"/compatibility"}
+              className="flex flex-row gap-2 items-center"
+            >
+              <Heart />
+              <p className="hidden md:block">{"궁합"}</p>
+            </Link>
+          </li>
           <li className="md:hover:bg-accent-primary active:bg-accent-primary p-2 rounded-2xl active:text-on-accent-primary md:hover:text-on-accent-primary">
             <Link
               href={"/bookmark"}
