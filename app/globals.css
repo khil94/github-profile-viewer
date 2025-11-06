@@ -20,8 +20,8 @@ body {
   --border: #d0d7de;
 
   /* 부요소 - container */
-  --primary-container: #f6f8fa;
-  --secondary-container: #eaeef2;
+  --primary-container: #eaeef2;
+  --secondary-container: #cbced1;
   --inverse-container: #2b3137;
 
   /* 부요소 - on (텍스트색) */
@@ -33,13 +33,13 @@ body {
   --on-inverse-container: #ffffff;
 
   /* 부요소 - accent (강조상태) */
-  --accent-primary: #eaeef2;
+  --accent-primary: #1f6feb;
   --accent-secondary: #d8dee4;
   --accent-inverse: #2f353c;
   --accent-border: #0969da;
 
   /* 부요소 - on + accent 조합 */
-  --on-accent-primary: #1f2328;
+  --on-accent-primary: #ffffff;
   --on-accent-secondary: #1f2328;
   --on-accent-inverse: #ffffff;
   --on-accent-border: #ffffff;

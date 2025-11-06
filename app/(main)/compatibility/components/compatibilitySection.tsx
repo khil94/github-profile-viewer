@@ -133,7 +133,7 @@ export default function CompatibilitySection({ first, second }: props) {
               avatar_url={first.userData.avatar_url}
               login={first.userData.login}
             />
-            <Heart className="w-8 h-8 text-on-accent-primary" />
+            <Heart className="w-8 h-8 text-accent-primary" />
             <UserAvatar
               avatar_url={second.userData.avatar_url}
               login={second.userData.login}
