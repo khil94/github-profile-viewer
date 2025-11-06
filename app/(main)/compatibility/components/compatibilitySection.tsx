@@ -9,6 +9,12 @@ import {
   GithubUserItem,
 } from "@/app/types";
 import {
+  getAverageContributionScore,
+  getLanguageScore,
+  getStreakScore,
+  getWeeklyRatioScore,
+} from "@/lib/compatibilityUtils";
+import {
   dynamicColors,
   getAverageContribution,
   getAverageStreak,
@@ -47,7 +53,7 @@ function getScoreSubscr(score: number) {
 
 export default function CompatibilitySection({ first, second }: props) {
   if (first === undefined || second === undefined) return <></>;
-  const score = 0;
+
   const contributionData: data<ContributionCalendar> = {
     first: first.contributionData.recentContributions.contributionCalendar,
     second: second.contributionData.recentContributions.contributionCalendar,
@@ -108,6 +114,15 @@ export default function CompatibilitySection({ first, second }: props) {
         color: dynamicColors(),
       })),
   };
+
+  const score =
+    getStreakScore(streakData) +
+    getAverageContributionScore(averageData) +
+    getWeeklyRatioScore(weekdayRatioData) +
+    getLanguageScore(sharedLanguage, {
+      first: langFavoriteData.first.map((v) => v.name),
+      second: langFavoriteData.second.map((v) => v.name),
+    });
 
   return (
     <section className="flex flex-col gap-8 w-full">
