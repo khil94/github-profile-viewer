@@ -14,7 +14,6 @@ export default function DiffComponent({ label, value, login }: props) {
     first: (value.first / (value.first + value.second)) * 100,
     second: (value.second / (value.first + value.second)) * 100,
   };
-  console.log("percentage", percentage);
   return (
     <div
       key={label}
