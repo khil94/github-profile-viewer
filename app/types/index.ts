@@ -11,6 +11,10 @@ export interface HeadItem {
   src: string;
 }
 
+export interface GithubEventResponse {
+  recentActivity: GithubEventResponse[];
+}
+
 export interface GithubUserResponse {
   incomplete_results: boolean;
   items: GithubUserItem[];
@@ -145,4 +149,9 @@ export interface GithubEventResponse {
   createdAt: string;
   actor: string;
   payload: any;
+}
+
+export interface data<T> {
+  first: T;
+  second: T;
 }
