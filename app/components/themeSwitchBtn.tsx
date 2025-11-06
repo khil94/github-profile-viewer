@@ -1,13 +1,18 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useClientOnly } from "@/lib/isomorphic";
 import { Moon, Sun } from "lucide-react";
 import { useThemeStore } from "../store/theme/themeStore";
 
 export default function ThemeSwitchBtn() {
   const { theme, setTheme } = useThemeStore();
+  const isClient = useClientOnly();
 
   function getIsDark() {
+    if (!isClient) {
+      return "system";
+    }
     return (
       theme === "dark" ||
       (theme === "system" &&
