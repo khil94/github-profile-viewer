@@ -93,11 +93,11 @@ export default async function UserDetailPage({
           <InfoCard
             title="가장 좋아하는 언어"
             content={contributionData.favoriteLanguage}
-            subscription={`${
+            subscription={`${Math.round(
               contributionData.languageDistribution[
                 contributionData.favoriteLanguage
               ] * 100
-            }%의 레포지토리에서 사용됨`}
+            )}%의 레포지토리에서 사용됨`}
             Icon={Globe}
             iconClass="text-green-500"
           />
